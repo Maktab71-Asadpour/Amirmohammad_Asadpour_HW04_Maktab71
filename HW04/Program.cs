@@ -5,14 +5,19 @@ bool canContinue = true;
 while (canContinue)
 {
     //---------------- Tamrin 1.1 ----------------
+    Console.Write("Enter your natonal code : ");
+    string nationalCode = Console.ReadLine();
+    if (personList.Any(p => p.NationalCode.Equals(nationalCode)))
+    {
+        Console.WriteLine("The national code already exists!\n");
+        continue;
+    }
     Console.Write("Enter your first name: ");
     string firstName = Console.ReadLine();
     Console.Write("Enter your last name: ");
     string lastName = Console.ReadLine();
     Console.Write("Enter your father name : ");
     string fatherName = Console.ReadLine();
-    Console.Write("Enter your natonal code : ");
-    string natonalCode = Console.ReadLine();
     Console.Write("Enter your phone number : ");
     string phoneNumber = Console.ReadLine();
     Console.WriteLine("Enter your birthday");
@@ -25,7 +30,7 @@ while (canContinue)
     Console.Write("Enter your weight : ");
     int weight = Convert.ToInt32(Console.ReadLine());
 
-    personList.Add(new Person(firstName, lastName, fatherName, natonalCode, phoneNumber, birthday, height, weight));
+    personList.Add(new Person(firstName, lastName, fatherName, nationalCode, phoneNumber, birthday, height, weight));
     var personListStringObj = Newtonsoft.Json.JsonConvert.SerializeObject(personList);
     File.WriteAllText("Persons.txt", personListStringObj);
     Console.WriteLine("\n");
